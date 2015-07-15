@@ -93,7 +93,8 @@ function war() {
     } else if (hand1.score === hand2.score) {
       console.log("Player 1: ", hand1.card);
       console.log("Player 2: ", hand2.card);
-      console.log("Tie");
+      console.log("WAR!");
+      miniGame();
     } else {
       deck2.push(hand2, hand1);
       console.log("Player 1: ", hand1.card);
@@ -113,6 +114,29 @@ function war() {
         war();
       }
   }
+
+
+  function miniGame() {
+    var p1War = deck1.splice(0, 4);
+    var p2War = deck2.splice(0, 4);
+
+    if (p1War[3] > p2War[3]) {
+      deck1.push(hand1, hand2, p1War, p2War);
+      console.log("Player 1 Wins the War.");
+    } else if (p1War[3] === p2War[3]) {
+      miniGame();
+    } else {
+      deck2.push(p2War, p1War, hand2, hand1);
+      console.log("p2w: ", p2War);
+      console.log("p1w: ", p1War);
+      console.log("hand2: ", hand2);
+      console.log("hand1: ", hand1);
+
+
+      console.log("Player 2 Wins the War.");
+    }
+  }
+
 }
 
 war();
