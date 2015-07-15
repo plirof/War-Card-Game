@@ -117,25 +117,31 @@ function war() {
 
 
   function miniGame() {
-    var p1War = deck1.slice(0, 4);
-    var p2War = deck2.slice(0, 4);
+    var p1War = deck1.splice(0, 4);
+    var p2War = deck2.splice(0, 4);
 
-    if (p1War[p1War.length -1].score > p2War[p2War.length - 1].score) {
-      deck1.push(hand1, hand2);
-      for (var i = 0; i < p1War.length; i++) {
-        deck1.push(p1War[i]);
-        deck1.push(p2War[i]);
-      }
-      console.log("Player 1 Wins the War.");
-    } else if (p1War[p1War.length -1].score === p2War[p2War.length - 1].score) {
-      miniGame();
+    if (p1War.length === 0) {
+      alert("Player 2 WINS")
+    } else if (p2War.length === 0) {
+      alert("Player 1 WINS")
     } else {
-      deck2.push(hand2, hand1);
-      for (var j = 0; j < p2War.length; j++) {
-        deck2.push(p2War[j]);
-        deck2.push(p2War[j]);
+      if (p1War[p1War.length -1].score > p2War[p2War.length - 1].score) {
+        deck1.push(hand1, hand2);
+        for (var i = 0; i < p1War.length; i++) {
+          deck1.push(p1War[i]);
+          deck1.push(p2War[i]);
+        }
+        console.log("Player 1 Wins the War.");
+      } else if (p1War[p1War.length -1].score === p2War[p2War.length - 1].score) {
+        miniGame();
+      } else {
+        deck2.push(hand2, hand1);
+        for (var j = 0; j < p2War.length; j++) {
+          deck2.push(p2War[j]);
+          deck2.push(p2War[j]);
+        }
+        console.log("Player 2 Wins the War.");
       }
-      console.log("Player 2 Wins the War.");
     }
   }
 
