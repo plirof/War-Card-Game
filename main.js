@@ -73,7 +73,7 @@ function war() {
          deckCopy[randomIndex] = tempValue;
      }
 
-      return deckCopy
+      return deckCopy;
   };
 
   console.log(shuffle());
@@ -103,13 +103,13 @@ function war() {
   }
   if (deck1.length > 0) {
     alert("Player 1 WINS");
-    var again = confirm("Play again?")
+    var again = confirm("Play again?");
       if (again === true) {
         war();
       }
   } else {
     alert("Player 2 WINS");
-    var again = confirm("Play again?")
+    var again = confirm("Play again?");
       if (again === true) {
         war();
       }
@@ -121,9 +121,9 @@ function war() {
     var p2War = deck2.splice(0, 4);
 
     if (p1War.length === 0) {
-      alert("Player 2 WINS")
+      alert("Player 2 WINS");
     } else if (p2War.length === 0) {
-      alert("Player 1 WINS")
+      alert("Player 1 WINS");
     } else {
       if (p1War[p1War.length -1].score > p2War[p2War.length - 1].score) {
         deck1.push(hand1, hand2);
@@ -144,7 +144,6 @@ function war() {
       }
     }
   }
-
 }
 
 war();
