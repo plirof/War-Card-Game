@@ -1,90 +1,60 @@
-var deck = [
-// spades
-  {card: ["🂡"], score: 14 },
-  {card: ["🂮"], score: 13 },
-  {card: ["🂭"], score: 12 },
-  {card: ["🂫"], score: 11 },
-  {card: ["🂪"], score: 10 },
-  {card: ["🂩"], score: 9 },
-  {card: ["🂨"], score: 8 },
-  {card: ["🂧"], score: 7 },
-  {card: ["🂦"], score: 6 },
-  {card: ["🂥"], score: 5 },
-  {card: ["🂤"], score: 4 },
-  {card: ["🂣"], score: 3 },
-  {card: ["🂢"], score: 2 },
-//hearts//
-  {card: ["🂡"], score: 14 },
-  {card: ["🂾"], score: 13 },
-  {card: ["🂽"], score: 12 },
-  {card: ["🂻"], score: 11 },
-  {card: ["🂺"], score: 10 },
-  {card: ["🂹"], score: 9 },
-  {card: ["🂸"], score: 8 },
-  {card: ["🂷"], score: 7 },
-  {card: ["🂶"], score: 6 },
-  {card: ["🂵"], score: 5 },
-  {card: ["🂴"], score: 4 },
-  {card: ["🂳"], score: 3 },
-  {card: ["🂲"], score: 2 },
-//clubs
-  {card: ["🃑"], score: 14 },
-  {card: ["🃞"], score: 13 },
-  {card: ["🃝"], score: 12 },
-  {card: ["🃛"], score: 11 },
-  {card: ["🃚"], score: 10 },
-  {card: ["🃙"], score: 9 },
-  {card: ["🃘"], score: 8 },
-  {card: ["🃗"], score: 7 },
-  {card: ["🃖"], score: 6 },
-  {card: ["🃕"], score: 5 },
-  {card: ["🃔"], score: 4 },
-  {card: ["🃓"], score: 3 },
-  {card: ["🃒"], score: 2 },
-//diamonds
-  {card: ["🃁"], score: 14 },
-  {card: ["🃎"], score: 13 },
-  {card: ["🃍"], score: 12 },
-  {card: ["🃋"], score: 11 },
-  {card: ["🃊"], score: 10 },
-  {card: ["🃉"], score: 9 },
-  {card: ["🃈"], score: 8 },
-  {card: ["🃇"], score: 7 },
-  {card: ["🃆"], score: 6 },
-  {card: ["🃅"], score: 5 },
-  {card: ["🃄"], score: 4 },
-  {card: ["🃃"], score: 3 },
-  {card: ["🃂"], score: 2 },
-];
+function newDeck(){
+
+  var ranks = [
+    {card:"a"},
+    {card:"2"},
+    {card:"3"},
+    {card:"4"},
+    {card:"5"},
+    {card:"6"},
+    {card:"7"},
+    {card:"8"},
+    {card:"9"},
+    {card:"10"},
+    {card:"j"},
+    {card:"q"},
+    {card:"k"}
+  ];
+
+  var suits = [ "d", "c", "s", "h"];
+
+  var deck = [];
 
 
-var deckCopy = deck.slice();
+  //creates 52 card deck with suits
+  for (var i = 0; i < ranks.length; i++) {
+    for (var j = 0; j < suits.length; j++) {
+      deck.push({
+        card: ranks[i].card,
+        suit: suits[j]
+      });
+    }
+  }
+  return deck;
+}
+
 var player1;
 var player2;
 var winner = [];
 
 function Player(deck) {
-  this.name = prompt("What is your name?");
+  // this.name = prompt("What is your name?");
   this.deck = deck;
   this.active = [];
 }
 
 //input: nothing, process: shuffle deck, out: shuffled deck
-function shuffle() {
-  //create a copy of the deck so that we can access it later if needed.
-  var currentIndex = deckCopy.length;
-  var tempValue;
-  var randomIndex;
+function shuffle(deck){
+  var output = [];
+  var workingArray = deck.slice(0);
+  var current = workingArray.length;
 
-  while (0 !== currentIndex) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-    tempValue = deckCopy[currentIndex];
-    deckCopy[currentIndex] = deckCopy[randomIndex];
-    deckCopy[randomIndex] = tempValue;
-   }
-
-    return deckCopy;
+  while (current) {
+    var random = Math.floor(Math.random() * current);
+    output.push(workingArray.splice(random, 1)[0]);
+    current --;
+  }
+  return output;
 }
 
 
@@ -112,8 +82,8 @@ function drawCards(player, num) {
 
 //input: two cards, process: compare the score of two cards, output: give the winner both of the cards
 function compareCards (player1, player2) {
-  var player1Score = player1.active[player1.active.length - 1].score;
-  var player2Score = player2.active[player2.active.length - 1].score;
+  var player1Score = player1.active[player1.active.length - 1].card;
+  var player2Score = player2.active[player2.active.length - 1].card;
 
   winnerCards(player1);
   winnerCards(player2);

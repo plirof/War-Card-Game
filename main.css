@@ -1,0 +1,36 @@
+#p1 {
+  -webkit-animation-name: p1-winner;
+  -webkit-animation-duration: 4s;
+  z-index: -1;
+}
+
+#p2 {
+  -webkit-animation-name: p2-loser;
+  -webkit-animation-duration: 4s;
+  z-index: -2;
+}
+
+.card {
+  height: 200px;
+  width: 150px;
+  float: left;
+  margin-left: 250px;
+  box-shadow: 5px 5px;
+  position: relative;
+ /* -webkit-animation-name: example;
+  -webkit-animation-duration: 4s; */
+}
+
+
+
+@keyframes p1-winner {
+    0%   {left:0;}
+    50%  {left:250px;}
+    99%  {left: -230px;}
+}
+
+@keyframes p2-loser {
+    0%   {right:0;}
+    50%  {right:250px;}
+    99%  {right: 950px;}
+}
