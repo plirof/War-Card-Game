@@ -85,8 +85,8 @@ function compareCards (player1, player2) {
   var player1Score = player1.active[player1.active.length - 1].card;
   var player2Score = player2.active[player2.active.length - 1].card;
 
-  winnerCards(player1);
-  winnerCards(player2);
+  //winnerCards(player1);
+  //winnerCards(player2);
   //conidtionals for comparing the score of each card to see who's score is greater.
   if (player1Score > player2Score) {
     for (var i = 0; i < winner.length; i++) {
